@@ -46,6 +46,11 @@ function Payment({payment, refresh}) {
         refresh()
     }
 
+    const tailHandler = async () => {
+        await paymentApi.push(payment.id)
+        refresh()
+    }
+
     return (
         <div className={styles.main}>
             <div className={styles.excel}>
@@ -99,6 +104,16 @@ function Payment({payment, refresh}) {
                                     data-type="decline"
                                 >
                                     {payment?.isFreeze? "Unfreeze" : "Freeze" }
+                                </button>
+                            </>}
+
+                            {payment?.isFreeze && <>
+                                <button 
+                                    className={styles.button} 
+                                    onClick={() => tailHandler()}
+                                    data-type="accept"
+                                >
+                                    Push Tail
                                 </button>
                             </>}
                         </div>

@@ -57,7 +57,9 @@ router.post('/block', Auth, Validate.block, Serialise.block,
 
 router.post('/push', Auth, Validate.get, Serialise.get, 
     Interceptor(async (req, res) => {
-        // to nc Api
+        const { id } = req.body
+
+        await Payment.pushTail(id)
 
         res.status(200).json(true)
     })

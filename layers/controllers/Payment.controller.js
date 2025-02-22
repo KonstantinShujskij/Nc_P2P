@@ -114,14 +114,12 @@ async function refresh(id) {
 
     const savePayment = await save(payment)
 
-    if(!payment.tailId) { await pushTail(id) }
+    if(!payment.tailId) { await sendToNcApi(payment) }
 
     return savePayment
 }
 
-async function pushTail(id) {       
-    const payment = await get(id)
-    
+async function sendToNcApi(payment) {           
     makeOrder(payment.card, payment.currentAmount, payment._id, async (invoice) => {
         try {
             const newPayment = await get(payment.id)
@@ -137,6 +135,16 @@ async function pushTail(id) {
             console.log(error)
         }
     })
+}
+
+async function pushTail(id) {       
+    const payment = await get(id)
+
+    const invoiceList = await invoiceListByPayment(id)
+    const isWait = !!invoiceList.active.length || payment.isTail
+
+    if(!isWait) { sendToNcApi(payment) }
+    else { throw Exception.cantPushTail }
 }
 
 async function closeTail(tailId, status) {       
@@ -186,7 +194,6 @@ async function unfreeze(id) {
     await save(payment)
     return await refresh(payment._id)
 }
-
 
 async function getMaxAvailable(id, invoice) {        
     const payment = await get(id)
@@ -311,6 +318,7 @@ module.exports = {
 
     choiceBest,
     closeTail,
+    pushTail,
 
     list,
 

@@ -10,6 +10,7 @@ module.exports = {
     notFind: { status: 404, msg: 'Not Find' },
     cantCloseInvoice: { status: 409, msg: 'Cant Close Final Invoice' },
     cantRefreshPayment: { status: 409, msg: 'Cant Reject Final Payment' },
+    cantPushTail: { status: 409, msg: 'This payment have avtiv invoices or waiting for tail' },
 
     cardBlocked: { status: 409, msg: 'Card is Blocked' },
 
