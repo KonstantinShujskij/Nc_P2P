@@ -11,7 +11,7 @@
 
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 15% 20% 25% 20% 10%;
+    grid-template-columns: 12% 20% 20% 20% 5.5% 10%;
     gap: 2.5%;
 
     user-select: none;

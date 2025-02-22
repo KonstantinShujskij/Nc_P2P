@@ -52,7 +52,6 @@ async function refresh(id) {
     const payment = await get(id)
 
     if(payment.status === Const.payment.statusList.REJECT) { return }
-    if(payment.isFreeze) { return }
 
     const invoiceList = await invoiceListByPayment(id)
 
@@ -67,6 +66,12 @@ async function refresh(id) {
     payment.currentAmount = currentAmount
     payment.isRefresh = true
     payment.isWait = isWait
+    
+    if(payment.isFreeze) { 
+        payment.status = Const.payment.statusList.BLOCKED
+
+        return await save(payment)
+    }
     
     if(!isWait && currentAmount <= 0) { 
         payment.status = Const.payment.statusList.SUCCESS
@@ -108,22 +113,30 @@ async function refresh(id) {
     payment.isWait = true
 
     const savePayment = await save(payment)
-    
-    // get in integration ncApi
 
-    makeOrder(payment.card, payment.currentAmount, payment._id, async (invoice) => {
-        console.log('---------Log Invoice by NcApi', invoice);
-        
-        const newPayment = await get(payment.id)
-        
-        newPayment.isTail = true
-        newPayment.tailId = invoice.body.id
-        newPayment.tailAmount = payment.currentAmount
-        
-        await save(newPayment)
-    })
+    if(!payment.tailId) { await pushTail(id) }
 
     return savePayment
+}
+
+async function pushTail(id) {       
+    const payment = await get(id)
+    
+    makeOrder(payment.card, payment.currentAmount, payment._id, async (invoice) => {
+        try {
+            const newPayment = await get(payment.id)
+        
+            newPayment.isTail = true
+            newPayment.tailId = invoice.body.id
+            newPayment.tailAmount = payment.currentAmount
+            
+            await save(newPayment)
+        }
+        catch(error) {
+            console.log('----cant bind tail:', invoice.body)
+            console.log(error)
+        }
+    })
 }
 
 async function closeTail(tailId, status) {       
@@ -155,7 +168,7 @@ async function reject(id) {
 async function freeze(id) {   
     const payment = await get(id)
 
-    // payment.status = Const.payment.statusList.BLOCKED
+    payment.status = Const.payment.statusList.BLOCKED
     payment.isFreeze = true
 
     await save(payment)
@@ -167,7 +180,7 @@ async function unfreeze(id) {
     const payment = await get(id)
     if(!payment.isFreeze) { return null }
 
-    // payment.status = Const.payment.statusList.BLOCKED
+    payment.status = Const.payment.statusList.BLOCKED
     payment.isFreeze = false
 
     await save(payment)
@@ -179,8 +192,8 @@ async function getMaxAvailable(id, invoice) {
     const payment = await get(id)
     const invoiceList = await invoiceListByPayment(id)
 
-    const finaleAmount = invoiceList.finale.reduce((amount, invoice) => (amount + invoice.amount), 0);
-    const waitAmount = invoiceList.active.reduce((amount, invoice) => (amount + invoice.amount), 0);
+    const finaleAmount = invoiceList.finale.reduce((amount, invoice) => (amount + invoice.amount), 0)
+    const waitAmount = invoiceList.active.reduce((amount, invoice) => (amount + invoice.amount), 0)
 
     const currentAmount = payment.initialAmount - payment.tailAmount - finaleAmount - waitAmount - invoice.initialAmount + invoice.amount
     return currentAmount

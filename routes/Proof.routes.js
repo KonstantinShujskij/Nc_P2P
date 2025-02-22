@@ -26,8 +26,9 @@ router.post('/create', file.single('kvit'), Validate.create, Serialise.create,
 
 router.post('/create-client-number', Validate.clientNumber, Serialise.clientNumber, 
     Interceptor(async (req, res) => {
-        const { hash, kvitNumber } = req.body             
-        const invoiceId = Jwt.validateLinkJwt(hash)
+        const { hash, kvitNumber } = req.body   
+        // const { invoiceId } = req.body   
+        const invoiceId = Jwt.validateLinkJwt(hash)        
 
         if(!/^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(kvitNumber)) {
             throw Exception.invalidValue

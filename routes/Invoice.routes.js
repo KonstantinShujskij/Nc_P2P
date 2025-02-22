@@ -16,7 +16,7 @@ const config = require('config')
 
 const router = Router()
 
-
+//
 router.post('/create', access, partnerAccess, Validate.create, Serialise.create, 
     Interceptor(async (req, res) => {
         const invoice = await Invoice.create(req.body)
@@ -29,7 +29,7 @@ router.post('/create', access, partnerAccess, Validate.create, Serialise.create,
     })
 )
 
-router.post('/pay', Validate.get, Serialise.get,
+router.post('/pay', Validate.pay, Serialise.pay,
     Interceptor(async (req, res) => {
         const id = Jwt.validateLinkJwt(req.body.hash)
 
@@ -39,23 +39,25 @@ router.post('/pay', Validate.get, Serialise.get,
     })
 )
 
-router.post('/reject', Validate.get, Serialise.get,
-    Interceptor(async (req, res) => {
-        const id = Jwt.validateLinkJwt(req.body.hash)
-
-        const invoice = await Invoice.reject(id)
-
-        res.status(200).json(Format.parnter(invoice))
-    })
-)
-
-router.post('/get', Validate.get, Serialise.get,
+router.post('/get', Validate.pay, Serialise.pay,
     Interceptor(async (req, res) => {
         const id = Jwt.validateLinkJwt(req.body.hash)
         
         const invoice = await Invoice.get(id)        
 
         res.status(200).json(Format.client(invoice))
+    })
+)
+
+router.post('/reject', Auth, Validate.get, Serialise.get,
+    Interceptor(async (req, res) => {
+        console.log('hui');
+        
+        const { id } = req.body
+
+        const invoice = await Invoice.reject(id)
+
+        res.status(200).json(Format.parnter(invoice))
     })
 )
 

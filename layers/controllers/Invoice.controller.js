@@ -71,7 +71,7 @@ async function close(id, amount) {
         return await confirm(id)
     }
 
-    console.log('SEND CUSTOM CALLBACK');
+    console.log('SEND CUSTOM CALLBACK')
     NcPay.callback({_doc: {...invoice, amount: invoice.amount + available, status: Const.invoice.statusList.CONFIRM }})
     moreAmount(invoice, amount)
     

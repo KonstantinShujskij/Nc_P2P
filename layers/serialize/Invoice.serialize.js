@@ -14,7 +14,7 @@ const create = (req, _, next) => {
     next()
 }
 
-const pay = async (req, _, next) => {   
+const get = async (req, _, next) => {   
     req.body = { 
         id: toObjectId(req.body.id),
     }
@@ -22,7 +22,7 @@ const pay = async (req, _, next) => {
     next()
 }
 
-const get = async (req, _, next) => {   
+const pay = async (req, _, next) => {   
     req.body = { 
         hash: req.body.hash,
     }

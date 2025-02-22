@@ -6,7 +6,7 @@
 
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 15% 20% 25% 20% 10%;
+    grid-template-columns: 12% 20% 20% 20% 5.5% 10%;
     gap: 2.5%;
     user-select: none;
 
@@ -76,4 +76,33 @@
     max-width: 80px;
     margin-left: auto;
     text-align: center;
+}
+
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.button {
+    padding: 6px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #7c849b;
+    width: fit-content;
+}
+
+.button[data-type="accept"]:hover {
+    background-color: #66cc66;
+}
+
+.button[data-type="decline"]:hover {
+    background-color: #ff6666;
+}
+
+.button.open {
+    width: 100%;
 }

@@ -33,7 +33,7 @@ const protectedCallback = (url, body, handler=()=>{}) => {
     const options = { url, headers: { "content-type": "application/json" }, body, json: true }
     
     request.post(options, (error, res) => {
-        console.log('----- Request Error:', error.mess)
+        console.log('----- Request Error:', error)
         
         handler(res)
     })

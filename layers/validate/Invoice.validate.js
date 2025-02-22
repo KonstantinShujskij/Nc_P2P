@@ -10,11 +10,11 @@ const create = [
 ]
 
 const pay = [
-    check('id', 'invalidId').notEmpty().isMongoId(),
+    check('hash', 'invalidId').notEmpty().isString(),
 ]
 
 const get = [
-    check('hash', 'invalidId').notEmpty().isString(),
+    check('id', 'invalidId').notEmpty().isMongoId(),
 ]
 
 const list = [

@@ -92,7 +92,7 @@ function Payment({payment, refresh}) {
                                 </button>
                             </>}
 
-                            <>
+                            {payment.status !== "SUCCESS" && payment.status !== "REJECT" && <>
                                 <button 
                                     className={styles.button} 
                                     onClick={() => freezeHandler()}
@@ -100,7 +100,7 @@ function Payment({payment, refresh}) {
                                 >
                                     {payment?.isFreeze? "Unfreeze" : "Freeze" }
                                 </button>
-                            </>
+                            </>}
                         </div>
                     </div>
                 )}
