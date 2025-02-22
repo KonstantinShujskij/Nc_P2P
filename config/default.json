@@ -1,0 +1,28 @@
+
+{
+    "serverUrl": "http://localhost:5000",
+    "baseUrl": "http://localhost:3000",
+    "port": 5600,
+    "sslPort": 443,
+
+    "mongoUri": "mongodb+srv://root:hdfsdaekwwuid@cluster0.nof58.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    "authSecret": "wqetsfdwlkosoaildisldolqe",
+    "jwtSecret": "NHrmJipPAavz6Juw",
+    "apiSecret": "NZqofqXRLmzC0q9f",
+    "botToken": "7732482149:AAGy674QRsQ0Gdf15CqUUncQmzkY11MUU2w",
+
+    "adminGroupe": 5382952737,
+
+    "payPageUrl": "https://acqpay.io/index.html",
+
+    "NcApiUrl": "https://ncapi.tech/api",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWRiMTg4MDlhZmVmYTFhN2VmMTEwMCIsImFjY2Vzc0xpc3QiOnsiYWRtaW4iOmZhbHNlLCJ0YWtlIjpmYWxzZSwibWFrZSI6dHJ1ZX0sImlhdCI6MTczOTQzNjQyNCwiZXhwIjoyNjAzNDM2NDI0fQ.6VG_-HXm8sZHK7LdoaHcNjCA4dkH71SeSVOnF7vyklQ",
+    "privateToken": "y1rHNqFCXTeq5JkcgBC9wTBDmMZPKfOV",
+    "maker": "67adb1d209afefa1a7ef11ac----local",
+
+    "NcPayUrl": "https://ncpay.tech/api",
+    "accessTokenNcPay": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTcyM2FiNmQ2MmQzMDY0OWFhZjVkYiIsImFjY2VzcyI6IkFETUlOIiwiaWF0IjoxNjk2MDE1Mjc1LCJleHAiOjEwMzM2MDE1Mjc1fQ.zpzDTFCXyo0TKRA7WeAeqJovumWXgGfUgogzWYqyJqw",
+    "privateTokenNcPay": "x48RLG4SJ91qTDcA0JFplTxJA38MBRro",
+
+    "checkGovUrl": "http://80.78.23.45/api"
+}

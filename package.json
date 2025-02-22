@@ -1,0 +1,48 @@
+{
+  "name": "layer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node app.js",
+    "server": "nodemon --ignore client --ignore app.js",
+    "client": "npm run start --prefix client",
+    "client:install": "npm install --prefix client",
+    "client:build": "npm run build --prefix client",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "",
+  "license": "ISC",
+  "_moduleAliases": {
+    "@core": "./core",
+    "@utils": "./utils",
+    "@middleware": "./middleware",
+    "@models": "./layers/models",
+    "@controllers": "./layers/controllers",
+    "@filter": "./layers/filters",
+    "@format": "./layers/format",
+    "@validate": "./layers/validate",
+    "@serialize": "./layers/serialize"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "config": "^3.3.12",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "express-validator": "^7.2.0",
+    "fs": "^0.0.1-security",
+    "generate-key": "^0.0.6",
+    "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
+    "mongoose": "^8.8.1",
+    "multer": "^1.4.5-lts.1",
+    "pdf-parse": "^1.1.1",
+    "pdf-parser": "^1.0.5",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.7"
+  }
+}
