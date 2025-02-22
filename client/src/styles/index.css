@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #22232b;
+}
+
+.app {
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
+
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+
+    background-color: #22232b;
+
+    color: #fbffff;
+    color: #7c849b;
+    
+    font-family: "Lato", serif;
+    font-size: 16px;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+}
+
+.app-wrap {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: auto;
+    gap: 48px;
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: scroll;
+    max-height: 100%;
+    height: 100%;
+  
+    overflow-y: visible;
+    padding: 24px;
+  }
+
+
+/* ----------------- replace ------------------ */
+
+
+input {
+    width: 100%;
+    border: 1.5px solid #474c57;
+    border-radius: 8px;
+    background-color: #474c57;
+    padding: 16px 24px;
+
+    font-size: 16px;
+
+    color: #fbffff;
+
+    outline: none;
+    user-select: auto;
+}
+
+input::placeholder {
+    color: #7c849b;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+
+    background-color: #474c57;
+    color: #fbffff;
+
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+button:hover {
+    background-color: #2a5eff;
+    color: #fbffff;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.copy {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+
+    cursor: pointer;
+}
+
+.copy .label {
+    user-select: auto;
+    transition: 0.4s ease;
+}
+
+.copy i {
+    transition: 0.4s ease;
+    opacity: 0;
+    font-size: 12px;
+}
+
+.copy:hover {
+    color: #fbffff;
+}
+
+.copy:hover i {
+    opacity: 1;
+}
+
+.copy.active {
+    color: #4bef81;
+}
+
+a.active {
+    color: #fbffff;
+}

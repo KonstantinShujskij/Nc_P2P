@@ -74,6 +74,8 @@ async function verify(id) {
     const proof = await get(id)
 
     if(proof.bank === Const.bankList.MONO) {        
+        if(!proof.kvitNumber) { return }
+        
         const transaction = await CheckGov.check(proof.kvitNumber)
         if(transaction) { 
             const { kvitNumber, card, amount } = transaction

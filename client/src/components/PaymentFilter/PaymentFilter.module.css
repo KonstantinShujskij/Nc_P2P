@@ -1,0 +1,119 @@
+
+.main {
+    width: 100%;
+    height: 100%;
+    min-width: 976px;
+
+    /* display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px; */
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 12% 20% 20% 20% 5.5% 10%;
+    gap: 2.5%;
+
+    user-select: none;
+
+    background-color: #333742;
+    border: 1.5px solid #474c57;
+    border-radius: 12px;
+
+    padding: 12px 26px;
+}
+
+.excel {
+    display: flex;
+    justify-content: center;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.input {
+    padding: 4px 6px;
+    font-size: 14px;
+}
+
+.amount {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.card {
+
+}
+
+.id {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.time {
+    text-align: center;
+}
+
+.status {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.statusItem {
+    padding: 6px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+
+    min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #474c57;
+    color: #7c849b;
+
+    cursor: pointer;
+    /* transition: 0.4s ease; */
+}
+
+.statusItem:hover {
+    color: #fbffff;
+}
+
+.active.statusItem[data-status="ALL"] {
+    background-color: #5a2a6d;
+    color: #d8a6ff; 
+}
+
+.active.statusItem[data-status="ACTIVE"] {
+    background-color: #5a4c43;
+    color: #f6a740;
+}
+
+.active.statusItem[data-status="SUCCESS"]{
+    background-color: #2f6149;
+    color: #4bef81;
+}
+
+.active.statusItem[data-status="REJECT"] {
+    background-color: #742e2e; 
+    color: #ff6b6b; 
+}
+
+.active.statusItem[data-status="BLOCKED"] {
+    background-color: #2e3e74; 
+    color: #6b9bff; 
+}
+
+.time {
+    margin-left: auto;
+    margin-right: 8px;
+    max-width: 80px;
+}

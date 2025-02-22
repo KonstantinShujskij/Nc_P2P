@@ -4,11 +4,8 @@ const Const = require('@core/Const')
 const Payment = require('@models/Payment.model')
 const Invoice = require('@models/Invoice.model')
 
-const Filter = require('@filter/Payment.filters')
-
 const { round } = require('@utils/utils')
 const { makeOrder } = require('@utils/NcApi')
-const { callback } = require('@utils/NcPay')
 
 
 // ---------- SUPPORT FUNCTION ----------
@@ -158,7 +155,7 @@ async function reject(id) {
 async function freeze(id) {   
     const payment = await get(id)
 
-    payment.status = Const.payment.statusList.BLOCKED
+    // payment.status = Const.payment.statusList.BLOCKED
     payment.isFreeze = true
 
     await save(payment)
@@ -170,7 +167,7 @@ async function unfreeze(id) {
     const payment = await get(id)
     if(!payment.isFreeze) { return null }
 
-    payment.status = Const.payment.statusList.BLOCKED
+    // payment.status = Const.payment.statusList.BLOCKED
     payment.isFreeze = false
 
     await save(payment)
@@ -196,7 +193,8 @@ async function getBestByEqual(amount) {
         status: Const.payment.statusList.ACTIVE, 
         currentAmount: amount, 
         isRefresh: true,
-        isWait: false
+        isWait: false,
+        isFreeze: false
     }).sort({ createdAt: 1 })
 
     return list.length? list[0] : null
@@ -205,6 +203,7 @@ async function getBestByEqual(amount) {
 async function getBestByLimits(amount) {    
     const options = { 
         status: Const.payment.statusList.ACTIVE,
+        isFreeze: false,
         minLimit: { $lte: amount }, 
         maxLimit: { $gte: amount }
     }
@@ -239,7 +238,7 @@ async function choiceBest(amount, step=0) {
         return await save(bestPayment)
     }
     catch(error) {
-        console.log('----- Canet change best');
+        console.log('----- Cant change best');
         return choiceBest(amount, step + 1)
     }
 }

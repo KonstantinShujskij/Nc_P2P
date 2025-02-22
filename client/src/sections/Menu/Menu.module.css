@@ -1,0 +1,38 @@
+.main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-shrink: 0;
+    gap: 20px;
+}
+
+.menu {
+    display: flex;
+    gap: 32px;
+}
+
+.title {
+    color: #fbffff;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 6px;
+
+    color: #7c849b;
+    transition: 0.4s ease;
+    cursor: pointer;
+
+    min-width: 56px;
+}
+
+.item.active {
+    color: green;
+}
+
+.item:hover {
+    color: #fbffff;
+}

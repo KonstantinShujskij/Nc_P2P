@@ -39,6 +39,16 @@ router.post('/pay', Validate.get, Serialise.get,
     })
 )
 
+router.post('/reject', Validate.get, Serialise.get,
+    Interceptor(async (req, res) => {
+        const id = Jwt.validateLinkJwt(req.body.hash)
+
+        const invoice = await Invoice.reject(id)
+
+        res.status(200).json(Format.parnter(invoice))
+    })
+)
+
 router.post('/get', Validate.get, Serialise.get,
     Interceptor(async (req, res) => {
         const id = Jwt.validateLinkJwt(req.body.hash)

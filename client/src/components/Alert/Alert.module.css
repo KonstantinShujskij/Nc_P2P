@@ -1,0 +1,27 @@
+.alert {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 18px 24px;
+    max-width: 240px;
+
+    background-color: #2e3e74; 
+    color: #6b9bff; 
+
+    transform: translateY(-100%);
+
+}
+
+.alert.message {
+    background-color: #2f6149;
+    color: #4bef81;
+}
+
+.alert.error {
+    background-color: #742e2e; 
+    color: #ff6b6b; 
+}
+
+.alert.active {
+    transform: translateY(0);
+}

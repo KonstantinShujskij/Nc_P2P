@@ -1,0 +1,132 @@
+
+.main {
+    width: 100%;
+    height: 100%;
+    min-width: 976px;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 10% 20% 20% 20% 7.5% 10%;
+    gap: 2.5%;
+    user-select: none;
+
+    background-color: #333742;
+    border: 1.5px solid #474c57;
+    border-radius: 12px;
+
+    padding: 12px 26px;
+}
+
+.excel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.amount {
+    min-width: 80px;
+    max-width: 140px;
+    font-weight: 600;
+
+    margin-right: auto;
+}
+
+.card {
+    min-width: 150px;
+    max-width: 200px;
+}
+
+.id {
+    min-width: 160px;
+}
+
+.status {
+    padding: 6px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+
+    min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+
+.status[data-status="WAIT"] {
+    background-color: #5a4c43;
+    color: #f6a740;
+}
+
+.status[data-status="CONFIRM"] {
+    background-color: #2f6149;
+    color: #4bef81;
+}
+
+.status[data-status="REJECT"] {
+    background-color: #742e2e; /* Тёмно-красный */
+    color: #ff6b6b; /* Ярко-красный */
+}
+
+.status[data-status="VALID"] {
+    background-color: #2e3e74; /* Тёмно-синий */
+    color: #6b9bff; /* Ярко-синий */
+}
+
+.time {
+    max-width: 80px;
+    margin-left: auto;
+    text-align: center;
+}
+
+.link {
+    transition: 0.4s ease;
+    cursor: pointer;
+}
+
+.link:hover {
+    color: #4bef81;
+}
+
+.button {
+    padding: 6px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #7c849b;
+    width: fit-content;
+}
+
+.button[data-type="accept"]:hover {
+    background-color: #66cc66;
+}
+
+.button[data-type="decline"]:hover {
+    background-color: #ff6666;
+}
+
+.button.open {
+    width: 100%;
+}
+
+.input {
+    padding: 4px 6px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.action {
+    min-width: 180px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
