@@ -50,9 +50,7 @@ router.post('/get', Validate.pay, Serialise.pay,
 )
 
 router.post('/reject', Auth, Validate.get, Serialise.get,
-    Interceptor(async (req, res) => {
-        console.log('hui');
-        
+    Interceptor(async (req, res) => {        
         const { id } = req.body
 
         const invoice = await Invoice.reject(id)

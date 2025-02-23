@@ -24,8 +24,8 @@ function InvoiceFilter() {
     const amountMax = useInput(filter?.amount?.max, (max) => setInvoicesFilter({ amount: { min: amountMin.value, max } }))
 
     const systemId = useInput(filter?.id, (id) => setInvoicesFilter({ id }))
-    const referenceId = useInput(filter?.refId, (refId) => setInvoicesFilter({ refId }))
-    const partnerId = useInput(filter?.partnerId, (partnerId) => setInvoicesFilter({ partnerId }))
+    // const referenceId = useInput(filter?.refId, (refId) => setInvoicesFilter({ refId }))
+    // const partnerId = useInput(filter?.partnerId, (partnerId) => setInvoicesFilter({ partnerId }))
 
 
     const addStatusHandler = (status='ALL') => {
@@ -86,12 +86,12 @@ function InvoiceFilter() {
                     <div className={styles.item}>
                         <Input input={systemId} className={styles.input} placeholder='System Id' />
                     </div>
-                    <div className={styles.item}>
+                    {/* <div className={styles.item}>
                         <Input input={referenceId} className={styles.input} placeholder='Reference Id' />
                     </div>
                     <div className={styles.item}>
                         <Input input={partnerId} className={styles.input} placeholder='Partner Id' />
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className={styles.excel}>

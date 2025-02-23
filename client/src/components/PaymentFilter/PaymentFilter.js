@@ -26,8 +26,8 @@ function PaymentFilter() {
     const currentAmountMax = useInput(filter?.currentAmount?.max, (max) => setPaymentsFilter({ currentAmount: { min: currentAmountMin.value, max } }))
 
     const systemId = useInput(filter?.id, (id) => setPaymentsFilter({ id }))
-    const referenceId = useInput(filter?.refId, (refId) => setPaymentsFilter({ refId }))
-    const partnerId = useInput(filter?.partnerId, (partnerId) => setPaymentsFilter({ partnerId }))
+    // const referenceId = useInput(filter?.refId, (refId) => setPaymentsFilter({ refId }))
+    // const partnerId = useInput(filter?.partnerId, (partnerId) => setPaymentsFilter({ partnerId }))
 
 
     const addStatusHandler = (status='ALL') => {
@@ -89,12 +89,12 @@ function PaymentFilter() {
                     <div className={styles.item}>
                         <Input input={systemId} className={styles.input} placeholder='System Id' />
                     </div>
-                    <div className={styles.item}>
+                    {/* <div className={styles.item}>
                         <Input input={referenceId} className={styles.input} placeholder='Reference Id' />
                     </div>
                     <div className={styles.item}>
                         <Input input={partnerId} className={styles.input} placeholder='Partner Id' />
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className={styles.excel}>
