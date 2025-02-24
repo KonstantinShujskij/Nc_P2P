@@ -1,9 +1,17 @@
+const { Types } = require("mongoose")
+
+
 function get(filterData, forse={}) {
     const filter = {...filterData, ...forse}    
 
     let options = {}
 
-    if(filter?.id) { options = {...options, _id: filter.id} }
+    if(filter?.id) { 
+        const orOptions = [{ refId: filter.id }, { partnerId: filter.id }]
+        if(Types.ObjectId.isValid(filter.id)) { orOptions.push({_id: filter.id}) }
+        options = {...options,  $or: orOptions} 
+    }    
+
     if(filter?.refId) { options = {...options, refId: filter.refId} }
     if(filter?.partnerId) { options = {...options, partnerId: filter.partnerId} }
 

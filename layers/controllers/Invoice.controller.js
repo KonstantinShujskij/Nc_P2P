@@ -123,7 +123,7 @@ async function getActive(_id) {
     return invoice
 }
 
-async function getList(options={}, sort={}, skip=0, limit=50) {   
+async function getList(options={}, sort={}, skip=0, limit=50) {       
     try { 
         const list = await Invoice.find(options).sort(sort).skip(skip).limit(limit)  
         const count = await Invoice.countDocuments(options)

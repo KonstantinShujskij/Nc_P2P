@@ -24,8 +24,8 @@ function InvoiceFilter() {
     const amountMax = useInput(filter?.amount?.max, (max) => setInvoicesFilter({ amount: { min: amountMin.value, max } }))
 
     const systemId = useInput(filter?.id, (id) => setInvoicesFilter({ id }))
-    const referenceId = useInput(filter?.refId, (refId) => setInvoicesFilter({ refId }))
-    const partnerId = useInput(filter?.partnerId, (partnerId) => setInvoicesFilter({ partnerId }))
+    // const referenceId = useInput(filter?.refId, (refId) => setInvoicesFilter({ refId }))
+    // const partnerId = useInput(filter?.partnerId, (partnerId) => setInvoicesFilter({ partnerId }))
 
 
     const addStatusHandler = (status='ALL') => {
@@ -86,6 +86,15 @@ function InvoiceFilter() {
                     <div className={styles.item}>
                         <Input input={systemId} className={styles.input} placeholder='System Id' />
                     </div>
+<<<<<<< HEAD
+=======
+                    {/* <div className={styles.item}>
+                        <Input input={referenceId} className={styles.input} placeholder='Reference Id' />
+                    </div>
+                    <div className={styles.item}>
+                        <Input input={partnerId} className={styles.input} placeholder='Partner Id' />
+                    </div> */}
+>>>>>>> 6588ab5b3179869ae1b929416a92de23aa638f79
                 </div>
             </div>
             <div className={styles.excel}>
