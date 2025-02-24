@@ -25,6 +25,9 @@ async function getNumberByKvit(file, bank) {
 
 async function createByNumber(invoiceId, kvitNumber) {
     if(!kvitNumber) { throw Exception.invalidValue }
+
+    const list = await Proof.find({ invoice: invoiceId, status: Const.proof.statusList.WAIT })
+    if(list.length >= 2) { throw Exception.manyProofs }
     
     const number = kvitNumber.toUpperCase()
 
@@ -50,6 +53,9 @@ async function createByNumber(invoiceId, kvitNumber) {
 
 async function createByFile(invoiceId, kvitFile='') {
     if(!kvitFile) { throw Exception.invalidValue }
+
+    const list = await Proof.find({ invoice: invoiceId, status: Const.proof.statusList.WAIT })
+    if(list.length >= 2) { throw Exception.manyProofs }
 
     const invoice = await Invoice.get(invoiceId)   
     if(invoice.status === Const.invoice.statusList.CONFIRM) { throw Exception.notFind }
