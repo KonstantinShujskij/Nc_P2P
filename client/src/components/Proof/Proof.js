@@ -54,7 +54,8 @@ function Proof({proof, refresh}) {
             <div className={styles.excel}>
                 <div className={styles.card}>
                     <div className={styles.item}>
-                        <Copy value={proof?.invoice} label={proof?.invoice} />
+                        <Copy value={proof?.id} label={proof?.id? proof.id : 'SystemId'} />
+                        <Copy value={proof?.payment} label={proof?.payment? proof.payment : 'PaymentId'} />
                         <Copy value={proof?.kvitNumber} label={proof?.kvitNumber} />
                         <a className={styles.link} href={`${BASE_URL}/kvits/${proof.kvitFile}`} target='_blanck' >{proof.kvitFile? 'Check File' : 'Have not File'}</a>
                     </div>
@@ -62,7 +63,10 @@ function Proof({proof, refresh}) {
             </div>
             <div className={styles.excel}>
                 <div className={styles.id}>
-                    <Copy value={proof?.id} label={proof?.id? proof.id : 'SystemId'} />
+                    <Copy value={proof?.invoice} label={proof?.invoice} />
+                    <Copy value={proof?.invoiceCard} label={proof?.invoiceCard} />
+                    <Copy value={proof?.invoiceAmount} label={proof?.invoiceAmount} />
+                    <div>{formatTime(proof?.invoiceDate)}</div>
                 </div>
             </div>
             <div className={styles.excel}>

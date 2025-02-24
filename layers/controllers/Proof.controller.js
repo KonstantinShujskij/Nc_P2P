@@ -37,6 +37,8 @@ async function createByNumber(invoiceId, kvitNumber) {
     const proof = new Proof({
         invoice: invoiceId,
         invoiceAmount: invoice.initialAmount,
+        invoiceCard: invoice.card,
+        invoiceDate: invoice.createdAt,
         payment: invoice.payment,
         kvitNumber: number,
         kvitFile: ''

@@ -68,10 +68,10 @@ function ProofFilter() {
             <div className={styles.excel}>
                 <div className={styles.card}>
                     <div className={styles.item}>
-                        <Input input={paymentId} className={styles.input} placeholder='Payment Id' />
+                        <Input input={systemId} className={styles.input} placeholder='System Id' />
                     </div>
                     <div className={styles.item}>
-                        <Input input={invoiceId} className={styles.input} placeholder='Invoice Id' />
+                        <Input input={paymentId} className={styles.input} placeholder='Payment Id' />
                     </div>
                     <div className={styles.item}>
                         <Input input={kvit} className={styles.input} placeholder='Kvit Number' />
@@ -81,7 +81,7 @@ function ProofFilter() {
             <div className={styles.excel}>
                 <div className={styles.id}>
                     <div className={styles.item}>
-                        <Input input={systemId} className={styles.input} placeholder='System Id' />
+                        <Input input={invoiceId} className={styles.input} placeholder='Invoice Id' />
                     </div>
                 </div>
             </div>

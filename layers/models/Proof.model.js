@@ -9,6 +9,8 @@ const schema = new Schema({
     bank: { type: String, default: '' },
     amount: { type: Number, default: 0 },
     invoiceAmount: { type: Number, default: 0 },
+    invoiceCard: { type: Number, default: '' },
+    invoiceDate: { type: Number, default: 0 },
 
     kvitNumber: { type: String, default: null },
     kvitFile: { type: String, default: null },

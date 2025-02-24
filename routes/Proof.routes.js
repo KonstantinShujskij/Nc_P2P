@@ -27,7 +27,6 @@ router.post('/create', file.single('kvit'), Validate.create, Serialise.create,
 router.post('/create-client-number', Validate.clientNumber, Serialise.clientNumber, 
     Interceptor(async (req, res) => {
         const { hash, kvitNumber } = req.body   
-        // const { invoiceId } = req.body   
         const invoiceId = Jwt.validateLinkJwt(hash)        
 
         if(!/^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(kvitNumber)) {
@@ -41,7 +40,7 @@ router.post('/create-client-number', Validate.clientNumber, Serialise.clientNumb
 )
 
 router.post('/create-client-file', file.single('kvit'), Validate.clientFile, Serialise.clientFile, 
-    Interceptor(async (req, res) => {
+    Interceptor(async (req, res) => {        
         const { hash, kvitFile } = req.body             
         const invoiceId = Jwt.validateLinkJwt(hash)
         

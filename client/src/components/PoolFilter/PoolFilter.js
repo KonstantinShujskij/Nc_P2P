@@ -74,12 +74,6 @@ function PoolFilter() {
                     <div className={styles.item}>
                         <Input input={systemId} className={styles.input} placeholder='System Id' />
                     </div>
-                    <div className={styles.item}>
-                        <Input input={referenceId} className={styles.input} placeholder='Reference Id' />
-                    </div>
-                    <div className={styles.item}>
-                        <Input input={partnerId} className={styles.input} placeholder='Partner Id' />
-                    </div>
                 </div>
             </div>
             <div className={styles.excel}>
