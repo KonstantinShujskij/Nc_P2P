@@ -17,6 +17,7 @@ const schema = new Schema({
 
     kvitNumber: { type: String, default: null },
     kvitFile: { type: String, default: null },
+    payLink: { type: String, default: null },
 
     createdAt: { type: Number },
     updatedAt: { type: Number }

@@ -81,11 +81,19 @@ async function refresh(id) {
 
         return await save(payment)
     }
-    
+
     if(maxLimit >= minLimit && maxLimit >= Const.minInvoiceLimit) {        
         payment.status = Const.payment.statusList.ACTIVE
         payment.maxLimit = maxLimit
         
+        return await save(payment)
+    }    
+    
+    if(currentAmount % 100 === 0 && currentAmount >= Const.minInvoiceLimit) {        
+        payment.status = Const.payment.statusList.ACTIVE
+        payment.minLimit = currentAmount
+        payment.maxLimit = currentAmount
+
         return await save(payment)
     }    
 

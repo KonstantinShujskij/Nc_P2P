@@ -24,6 +24,7 @@ const admin = (invoice) => ({
 
     kvit: invoice.kvitFile,
     kvitNumber: invoice.kvitNumber,
+    payLink: invoice.payLink,
 
     createdAt: invoice.createdAt,
 })

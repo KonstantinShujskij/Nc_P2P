@@ -65,7 +65,7 @@ function Proof({proof, refresh}) {
                 <div className={styles.id}>
                     <Copy value={proof?.invoice} label={proof?.invoice} />
                     <Copy value={proof?.invoiceCard} label={proof?.invoiceCard} />
-                    <Copy value={proof?.invoiceAmount} label={proof?.invoiceAmount} />
+                    <Copy value={proof?.invoiceAmount} label={`${proof?.invoiceAmount} UAH`} />
                     <div>{formatTime(proof?.invoiceDate)}</div>
                 </div>
             </div>

@@ -27,6 +27,7 @@ function Invoice({invoice, refresh}) {
                 <div className={styles.card}>
                     <Copy value={invoice?.payment} label={invoice?.payment} />
                     <Copy value={invoice?.card} label={formatCardNumber(invoice?.card)} />
+                    <a href={invoice?.payLink} target='_blanck'>Link to Proof</a>
                 </div>
             </div>
             <div className={styles.excel}>

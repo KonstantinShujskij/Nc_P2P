@@ -3,9 +3,11 @@ const NcPay = require('@utils/NcPay')
 
 const Invoice = require('@models/Invoice.model')
 const Payment = require('@controllers/Payment.controller')
+const Jwt = require('@utils/Jwt.utils')
 
 const Exception = require('@core/Exception')
 const Const = require('@core/Const')
+const config = require('config')
 
 // ---------- SUPPORT FUNCTION ----------
 
@@ -27,6 +29,11 @@ async function create({ amount, bank, refId, partnerId }) {
         payment: payment._id,
         card: payment.card
     })
+
+    const hash = Jwt.generateLinkJwt(invoice._id)
+    const payPageUrl = config.get('payPageUrl')
+
+    invoice.payLink = `${payPageUrl}?hash=${hash}`
 
     await save(invoice)
     await Payment.refresh(payment._id)
