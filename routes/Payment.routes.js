@@ -89,6 +89,19 @@ router.post('/unfreeze', Auth, Validate.get, Serialise.get,
     })
 )
 
+router.post('/statistic', Auth, 
+    Interceptor(async (req, res) => {
+        const { start, stop } = req.body
+
+        const startTime = start? parseInt(start) : 0
+        const stopTime = stop? parseInt(stop) : Date.now()
+
+        const data = await Payment.getStatistics(startTime, stopTime)
+
+        res.status(200).json(data)
+    })
+)
+
 router.post('/order/update',  
     Interceptor(async (req, res) => {
         const {id, status} = req.body 

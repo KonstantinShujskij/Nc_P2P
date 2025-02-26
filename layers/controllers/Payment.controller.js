@@ -221,7 +221,7 @@ async function getBestByEqual(amount) {
         status: Const.payment.statusList.ACTIVE, 
         currentAmount: amount, 
         isRefresh: true,
-        isWait: false,
+        isTail: false,
         isFreeze: false
     }).sort({ createdAt: 1 })
 
@@ -269,6 +269,78 @@ async function choiceBest(amount, step=0) {
         console.log('----- Cant change best');
         return choiceBest(amount, step + 1)
     }
+}
+
+// ---------- STATISTIC ----------
+
+async function getStatistics(timestart=0, timestop=Infinity, format="%Y-%m-%d", options={}) {   
+    const data = await Payment.aggregate([
+        { $match: { ...options, createdAt: { $gt: timestart, $lt: timestop } }},
+        { $addFields: {
+            date: { $toDate: '$createdAt' },
+            dt: { $subtract: [ "$updatedAt", "$createdAt" ]},
+        }},
+        { $group: {
+            _id: { $dateToString: { format, date: "$date" } },
+            count: { $sum: 1 },
+            countConfirm: { $sum: { $cond: { if: { $eq: ['$status', "SUCCESS"] }, then: 1, else: 0 }}},
+
+            total: { $sum: '$amount'},
+            totalConfirm: { $sum: { $cond: { if: { $eq: ['$status', "SUCCESS"] }, then: '$amount', else: 0 }}},
+            totalInitialConfirm: { $sum: { $cond: { if: { $eq: ['$status', "SUCCESS"] }, then: '$initialAmount', else: 0 }}},
+            dt: { $sum: '$dt' }
+        }},
+        { $sort: { _id: 1 } },
+        { $project: {
+            count: 1,
+            countConfirm: 1,
+            conversion: { $divide: [ "$countConfirm", "$count" ] },
+
+            total: 1,
+            totalConfirm: 1,
+            totalInitialConfirm: 1,
+
+            dt: 1,
+        }}
+    ]) 
+    
+    let count = 0
+    let confirmCount = 0
+    let conversion = 0
+    let total = 0
+    let totalConfirm = 0
+    let totalInitialConfirm = 0
+    let avarageTime = 0
+    let avarageSum = 0
+
+
+    data.forEach((item) => {
+        count += item.count
+        confirmCount += item.countConfirm
+
+        total += item.totalConfirm
+        totalConfirm += item.totalConfirm
+        totalInitialConfirm += item.totalConfirm
+
+        avarageTime += item.dt
+    })   
+
+    conversion = confirmCount / (count || 1)
+    avarageTime = avarageTime / (count || 1)
+    avarageSum = totalConfirm / (confirmCount || 1)
+        
+    return {
+        count,
+        confirmCount,
+        conversion,
+        total,
+        totalConfirm,
+        totalInitialConfirm,
+        avarageSum,
+        avarageTime
+    }
+    
+    //data
 }
 
 // ---------- LIST ----------
@@ -335,5 +407,7 @@ module.exports = {
 
     reject,
     freeze,
-    unfreeze
+    unfreeze, 
+
+    getStatistics
 }

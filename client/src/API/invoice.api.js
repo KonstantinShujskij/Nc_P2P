@@ -13,6 +13,11 @@ export default function useInvoiceApi() {
         catch(error) { return null } 
     }
 
+    const getStatistics = async (start, stop) => {       
+        try { return await protectedRequest('api/invoice/statistic', {start, stop}) }
+        catch(error) { return null } 
+    }
+
     const list = async (page=1, limit=20) => {       
         try { return await protectedRequest('api/invoice/list', {filter, page, limit}) }
         catch(error) { return {list: [], count: 0} } 
@@ -20,6 +25,8 @@ export default function useInvoiceApi() {
 
     return { 
         reject,
-        list
+        list,
+
+        getStatistics
     }
 }

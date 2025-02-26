@@ -61,6 +61,19 @@ router.post('/reject', Auth, Validate.get, Serialise.get,
     })
 )
 
+router.post('/statistic', Auth, 
+    Interceptor(async (req, res) => {
+        const { start, stop } = req.body
+
+        const startTime = start? parseInt(start) : 0
+        const stopTime = stop? parseInt(stop) : Date.now()
+
+        const data = await Invoice.getStatistics(startTime, stopTime)
+
+        res.status(200).json(data)
+    })
+)
+
 router.post('/list', Auth, Validate.list, Serialise.list,
     Interceptor(async (req, res) => {
         const { filter, page, limit } = req.body        
