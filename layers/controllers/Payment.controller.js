@@ -318,9 +318,9 @@ async function getStatistics(timestart=0, timestop=Infinity, format="%Y-%m-%d", 
         count += item.count
         confirmCount += item.countConfirm
 
-        total += item.totalConfirm
+        total += item.total
         totalConfirm += item.totalConfirm
-        totalInitialConfirm += item.totalConfirm
+        totalInitialConfirm += item.totalInitialConfirm
 
         avarageTime += item.dt
     })   
